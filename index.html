@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba técnica - Exposición</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: #1f2937;
+    }
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 6px; color: #4f46e5; }
+    .fecha { font-size: 0.9rem; color: #6b7280; margin-bottom: 22px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); }
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: #4f46e5;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover { background: #4338ca; }
+    .mensaje {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #ecfdf5;
+      color: #065f46;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Prueba técnica - Exposición</h1>
+    <p class="fecha">Creado: 23/10/2026 17:16:48 · Ahora: <span id="ahora"></span></p>
+
+    <form id="formulario">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+
+      <label for="curso">Curso</label>
+      <input type="text" id="curso" placeholder="Ej: 3.º B" required>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div class="mensaje" id="mensaje"></div>
+  </main>
+
+  <script>
+    function actualizarHora() {
+      document.getElementById("ahora").textContent = new Date().toLocaleString("es");
+    }
+    actualizarHora();
+    setInterval(actualizarHora, 1000);
+
+    document.getElementById("formulario").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const curso = document.getElementById("curso").value.trim();
+      const mensaje = document.getElementById("mensaje");
+      mensaje.textContent = "¡Gracias, " + nombre + " (" + curso + ")! Tu respuesta fue recibida.";
+      mensaje.style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
